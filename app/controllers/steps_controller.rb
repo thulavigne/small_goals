@@ -2,6 +2,7 @@ class StepsController < ApplicationController
 before_filter :find_goal
 before_filter :find_goal
 before_filter :find_step, :only => [:show, :edit, :update, :destroy]
+before_filter :authenticate_user!, :except => [:index, :show]
 
   def new
     @step = @goal.steps.build
@@ -9,6 +10,7 @@ before_filter :find_step, :only => [:show, :edit, :update, :destroy]
 
   def create
     @step = @goal.steps.build(params[:step])
+    @step.user = current_user
       if @step.save
         flash[:notice] = "Step has been created."
         redirect_to [@goal, @step]

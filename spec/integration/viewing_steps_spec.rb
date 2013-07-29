@@ -2,9 +2,11 @@ require 'spec_helper'
 feature "Viewing steps" do
   before do
     textmate_2 = Factory(:goal, :name => "Sleep Early")
-    Factory(:step,
-            :goal => textmate_2,
-            :name => "Make it shiny!")
+    user = Factory(:user)
+    step = Factory(:step,
+                   :goal => textmate_2,
+                   :name   => "Make it shiny!")
+    step.update_attribute(:user, user)
     internet_explorer = Factory(:goal, :name => "Internet Explorer")
     Factory(:step,
             :goal => internet_explorer,

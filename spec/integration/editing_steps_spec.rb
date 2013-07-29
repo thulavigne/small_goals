@@ -1,8 +1,14 @@
 require 'spec_helper'
 feature "Editing steps" do
   let!(:goal) { Factory(:goal) }
-  let!(:step) { Factory(:step, :goal => goal) }
+  let!(:user) { Factory(:confirmed_user) }
+  let!(:step) do
+    step = Factory(:step, :goal => goal)
+    step.update_attribute(:user, user)
+    step
+  end
   before do
+    sign_in_as!(user)
     visit '/'
     click_link goal.name
     click_link step.name
