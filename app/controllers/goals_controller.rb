@@ -37,4 +37,11 @@ class GoalsController < ApplicationController
       render :action => "edit"
     end
   end
+
+  def destroy
+    @goal = Goal.find(params[:id])
+    @goal.destroy
+    flash[:notice] = "Goal has been deleted."
+    redirect_to goals_path
+  end
 end
