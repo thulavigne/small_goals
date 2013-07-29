@@ -23,4 +23,18 @@ class GoalsController < ApplicationController
     @goal = Goal.find(params[:id])
   end
 
+  def edit
+    @goal = Goal.find(params[:id])
+  end
+
+  def update
+    @goal = Goal.find(params[:id])
+    if @goal.update_attributes(params[:goal])
+      flash[:notice] = "Goal has been updated."
+      redirect_to @goal
+    else
+      flash[:alert] = "Goal has not been updated."
+      render :action => "edit"
+    end
+  end
 end
