@@ -1,5 +1,9 @@
-<%= link_to "New Goal", new_goal_path %>
+<% admins_only do %>
+  <%= link_to "New Goal", new_goal_path %>
+<% end %>
+
 <h2>Goals</h2>
+
 <ul>
   <% @goals.each do |goal| %>
     <li><%= link_to goal.name, goal %></li>

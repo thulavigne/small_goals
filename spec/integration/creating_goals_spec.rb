@@ -13,7 +13,7 @@ feature 'Creating Goals' do
     page.should have_content('Goal has been created.')
     goal = Goal.find_by_name("Sleep Early")
     page.current_url.should == goal_url(goal)
-    title = "Sleep Early - My Small Goal"
+    title = "Sleep Early - My Small Goals"
     find("title").should have_content(title)
   end
 
