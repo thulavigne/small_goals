@@ -2,6 +2,7 @@ require 'spec_helper'
 
 feature 'Creating Goals' do
   before do
+    sign_in_as!(Factory(:admin_user))
     visit '/'
     click_link 'New Goal'
   end

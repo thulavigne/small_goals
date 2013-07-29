@@ -1,6 +1,7 @@
 require 'spec_helper'
 feature "Editing Goals" do
   before do
+    sign_in_as!(Factory(:admin_user))
     Factory(:goal, :name => "Sleep Early")
     visit "/"
     click_link "Sleep Early"

@@ -1,5 +1,9 @@
 require 'spec_helper'
 feature "Deleting goals" do
+  before do
+    sign_in_as!(Factory(:admin_user))
+  end
+
   scenario "Deleting a goal" do
     Factory(:goal, :name => "Sleep Early")
     visit "/"
