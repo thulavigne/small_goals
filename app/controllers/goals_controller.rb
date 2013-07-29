@@ -1,5 +1,10 @@
 class GoalsController < ApplicationController
 
+  before_filter :find_goal, :only => [:show,
+                                         :edit,
+                                         :update,
+                                         :destroy]
+
   def index
     @goals = Goal.all
   end
@@ -20,15 +25,12 @@ class GoalsController < ApplicationController
   end
 
   def show
-    @goal = Goal.find(params[:id])
   end
 
   def edit
-    @goal = Goal.find(params[:id])
   end
 
   def update
-    @goal = Goal.find(params[:id])
     if @goal.update_attributes(params[:goal])
       flash[:notice] = "Goal has been updated."
       redirect_to @goal
@@ -39,9 +41,17 @@ class GoalsController < ApplicationController
   end
 
   def destroy
-    @goal = Goal.find(params[:id])
     @goal.destroy
     flash[:notice] = "Goal has been deleted."
     redirect_to goals_path
+  end
+
+  private
+    def find_goal
+      @goal = Goal.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "The goal you were looking" +
+                      " for could not be found."
+      redirect_to goals_path
   end
 end
