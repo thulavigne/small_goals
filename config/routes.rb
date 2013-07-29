@@ -1,5 +1,7 @@
 SmallGoals::Application.routes.draw do
 
+  devise_for :users
+
     root :to => "goals#index"
     resources :goals do
       resources :steps
