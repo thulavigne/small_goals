@@ -13,7 +13,8 @@ class GoalsController < ApplicationController
       flash[:notice] = "Goal has been created."
       redirect_to @goal
     else
-      # nothing, yet
+      flash[:alert] = "Goal has not been created."
+      render :action => "new"
     end
   end
 
