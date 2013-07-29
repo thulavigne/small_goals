@@ -34,6 +34,12 @@ before_filter :find_step, :only => [:show, :edit, :update, :destroy]
     end
   end
 
+  def destroy
+    @step.destroy
+    flash[:notice] = "Step has been deleted."
+    redirect_to @goal
+  end
+
   private
     def find_goal
       @goal = Goal.find(params[:goal_id])
