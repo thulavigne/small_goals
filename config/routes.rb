@@ -1,7 +1,9 @@
 SmallGoals::Application.routes.draw do
 
     root :to => "goals#index"
-    resources :goals
+    resources :goals do
+      resources :steps
+    end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
