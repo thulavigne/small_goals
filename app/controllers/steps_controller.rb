@@ -1,6 +1,5 @@
 class StepsController < ApplicationController
 before_filter :find_goal
-before_filter :find_goal
 before_filter :find_step, :only => [:show, :edit, :update, :destroy]
 before_filter :authenticate_user!, :except => [:index, :show]
 
