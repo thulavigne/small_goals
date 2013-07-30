@@ -1,8 +1,6 @@
-<% admins_only do %>
+<% if user_signed_in? %>
   <%= link_to "New Goal", new_goal_path %>
-<% end %>
 
-<% admins_only do %>
   <h2>My Goals</h2>
 <% end %>
 

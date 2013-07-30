@@ -2,15 +2,14 @@
 
 <h2><%= @goal.name %></h2>
 
-<% admins_only do %>
-  <%= link_to "Edit Goal", edit_goal_path(@goal) %>
+<% if user_signed_in? %>
+  <%= link_to "Edit Goal", edit_goal_path(@goal) %> |
   <%= link_to "Delete Goal",
        goal_path(@goal),
        :method => :delete,
-       :confirm => "Are you sure you want to delete this goal?" %>
+       :confirm => "Are you sure you want to delete this goal?" %> |
+  <%= link_to "New Step", new_goal_step_path(@goal) %>
 <% end %>
-
-<%= link_to "New Step", new_goal_step_path(@goal) %>
 
 <ul id='steps'>
   <% @goal.steps.each do |step| %>
